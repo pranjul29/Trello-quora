@@ -1,10 +1,13 @@
-/*package com.upgrad.quora.api.controller;
+/*
+package com.upgrad.quora.api.controller;
 
+import com.upgrad.quora.service.business.UserBusinessService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,6 +24,8 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mvc;
 
+    @MockBean
+    private UserBusinessService userBusinessService;
     //This test case passes when you signup with a username that already exists in the database.
     @Test
     public void signupWithRepeatedUserName() throws Exception {
