@@ -9,93 +9,91 @@ import java.time.ZonedDateTime;
 @Entity
 @Table(name = "user_auth", schema = "public")
 @NamedQueries({
-  @NamedQuery(
-      name = "userAuthTokenByAccessToken",
-      query = "select ut from UserAuthEntity ut where ut.accessToken = :accessToken ")
+        @NamedQuery(name = "userAuthTokenByAccessToken", query = "select ut from UserAuthEntity ut where ut.accessToken = :accessToken ")
 })
 public class UserAuthEntity implements Serializable {
-  @Id
-  @Column(name = "ID")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-  @Column(name = "UUID")
-  @Size(max = 200)
-  private String uuid;
+    @Column(name = "UUID")
+    @Size(max = 200)
+    private String uuid;
 
-  @ManyToOne
-  @JoinColumn(name = "USER_ID")
-  private UserEntity user;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private UserEntity user;
 
-  @Column(name = "ACCESS_TOKEN")
-  @NotNull
-  @Size(max = 500)
-  private String accessToken;
+    @Column(name = "ACCESS_TOKEN")
+    @NotNull
+    @Size(max = 500)
+    private String accessToken;
 
-  @Column(name = "LOGIN_AT")
-  @NotNull
-  private ZonedDateTime loginAt;
+    @Column(name = "LOGIN_AT")
+    @NotNull
+    private ZonedDateTime loginAt;
 
-  @Column(name = "EXPIRES_AT")
-  @NotNull
-  private ZonedDateTime expiresAt;
+    @Column(name = "EXPIRES_AT")
+    @NotNull
+    private ZonedDateTime expiresAt;
 
-  @Column(name = "LOGOUT_AT")
-  private ZonedDateTime logoutAt;
+    @Column(name = "LOGOUT_AT")
+    private ZonedDateTime logoutAt;
 
-  public Integer getId() {
-    return id;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  public String getUuid() {
-    return uuid;
-  }
+    public String getUuid() {
+        return uuid;
+    }
 
-  public void setUuid(String uuid) {
-    this.uuid = uuid;
-  }
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
-  public UserEntity getUser() {
-    return user;
-  }
+    public UserEntity getUser() {
+        return user;
+    }
 
-  public void setUser(UserEntity user) {
-    this.user = user;
-  }
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 
-  public String getAccessToken() {
-    return accessToken;
-  }
+    public String getAccessToken() {
+        return accessToken;
+    }
 
-  public void setAccessToken(String accessToken) {
-    this.accessToken = accessToken;
-  }
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
 
-  public ZonedDateTime getLoginAt() {
-    return loginAt;
-  }
+    public ZonedDateTime getLoginAt() {
+        return loginAt;
+    }
 
-  public void setLoginAt(ZonedDateTime loginAt) {
-    this.loginAt = loginAt;
-  }
+    public void setLoginAt(ZonedDateTime loginAt) {
+        this.loginAt = loginAt;
+    }
 
-  public ZonedDateTime getExpiresAt() {
-    return expiresAt;
-  }
+    public ZonedDateTime getExpiresAt() {
+        return expiresAt;
+    }
 
-  public void setExpiresAt(ZonedDateTime expiresAt) {
-    this.expiresAt = expiresAt;
-  }
+    public void setExpiresAt(ZonedDateTime expiresAt) {
+        this.expiresAt = expiresAt;
+    }
 
-  public ZonedDateTime getLogoutAt() {
-    return logoutAt;
-  }
+    public ZonedDateTime getLogoutAt() {
+        return logoutAt;
+    }
 
-  public void setLogoutAt(ZonedDateTime logoutAt) {
-    this.logoutAt = logoutAt;
-  }
+    public void setLogoutAt(ZonedDateTime logoutAt) {
+        this.logoutAt = logoutAt;
+    }
 }
