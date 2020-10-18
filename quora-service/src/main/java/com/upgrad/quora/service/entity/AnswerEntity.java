@@ -6,6 +6,11 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "answer")
+@NamedQueries(
+        {
+                @NamedQuery(name = "getAnswerByUuid", query = "select u from AnswerEntity u where u.uuid=:uuid")
+        }
+)
 public class AnswerEntity {
 
     @Id
