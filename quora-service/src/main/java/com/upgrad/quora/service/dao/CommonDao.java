@@ -11,22 +11,27 @@ import javax.persistence.PersistenceContext;
 @Repository
 public class CommonDao {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+  @PersistenceContext private EntityManager entityManager;
 
-    public UserEntity getUserProfile(final String userUuid) {
-        try {
-            return entityManager.createNamedQuery("userByUuid", UserEntity.class).setParameter("uuid", userUuid).getSingleResult();
-        } catch (NoResultException nre) {
-            return null;
-        }
+  public UserEntity getUserProfile(final String userUuid) {
+    try {
+      return entityManager
+          .createNamedQuery("userByUuid", UserEntity.class)
+          .setParameter("uuid", userUuid)
+          .getSingleResult();
+    } catch (NoResultException nre) {
+      return null;
     }
+  }
 
-    public UserAuthEntity getUserAuthToken(final String accessToken) {
-        try {
-            return entityManager.createNamedQuery("userAuthTokenByAccessToken", UserAuthEntity.class).setParameter("accessToken", accessToken).getSingleResult();
-        } catch (NoResultException nre) {
-            return null;
-        }
+  public UserAuthEntity getUserAuthToken(final String accessToken) {
+    try {
+      return entityManager
+          .createNamedQuery("userAuthTokenByAccessToken", UserAuthEntity.class)
+          .setParameter("accessToken", accessToken)
+          .getSingleResult();
+    } catch (NoResultException nre) {
+      return null;
     }
+  }
 }

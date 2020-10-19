@@ -14,14 +14,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/")
 public class AdminController {
 
-    @Autowired
-    private AdminBusinessService adminBusinessService;
+  @Autowired private AdminBusinessService adminBusinessService;
 
-    @RequestMapping(method = RequestMethod.DELETE, path = "/admin/user/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<UserDeleteResponse> userProfile(@PathVariable("userId") final String userId, @RequestHeader("authorization") final String authorization) throws UserNotFoundException, AuthorizationFailedException {
+  @RequestMapping(
+      method = RequestMethod.DELETE,
+      path = "/admin/user/{userId}",
+      produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public ResponseEntity<UserDeleteResponse> userProfile(
+      @PathVariable("userId") final String userId,
+      @RequestHeader("authorization") final String authorization)
+      throws UserNotFoundException, AuthorizationFailedException {
 
-        adminBusinessService.userDelete(userId, authorization);
-        UserDeleteResponse userDeleteResponse = new UserDeleteResponse().id(userId).status("USER SUCCESSFULLY DELETED");
-        return new ResponseEntity<UserDeleteResponse>(userDeleteResponse, HttpStatus.OK);
-    }
+    adminBusinessService.userDelete(userId, authorization);
+    UserDeleteResponse userDeleteResponse =
+        new UserDeleteResponse().id(userId).status("USER SUCCESSFULLY DELETED");
+    return new ResponseEntity<UserDeleteResponse>(userDeleteResponse, HttpStatus.OK);
+  }
 }

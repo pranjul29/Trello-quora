@@ -13,24 +13,31 @@ import javax.transaction.Transactional;
 @Repository
 public class AdminDao {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+  @PersistenceContext private EntityManager entityManager;
 
-    @Transactional
-    public void userDelete(final String userUuid) throws UserNotFoundException {
-        try {
-            UserEntity userEntity = entityManager.createNamedQuery("userByUuid", UserEntity.class).setParameter("uuid", userUuid).getSingleResult();
-            entityManager.remove(userEntity);
-        } catch (NoResultException nre) {
-            throw new UserNotFoundException("USR-001", "User with entered uuid to be deleted does not exist");
-        }
+  @Transactional
+  public void userDelete(final String userUuid) throws UserNotFoundException {
+    try {
+      UserEntity userEntity =
+          entityManager
+              .createNamedQuery("userByUuid", UserEntity.class)
+              .setParameter("uuid", userUuid)
+              .getSingleResult();
+      entityManager.remove(userEntity);
+    } catch (NoResultException nre) {
+      throw new UserNotFoundException(
+          "USR-001", "User with entered uuid to be deleted does not exist");
     }
+  }
 
-    public UserAuthEntity getUserAuthToken(final String accessToken) {
-        try {
-            return entityManager.createNamedQuery("userAuthTokenByAccessToken", UserAuthEntity.class).setParameter("accessToken", accessToken).getSingleResult();
-        } catch (NoResultException nre) {
-            return null;
-        }
+  public UserAuthEntity getUserAuthToken(final String accessToken) {
+    try {
+      return entityManager
+          .createNamedQuery("userAuthTokenByAccessToken", UserAuthEntity.class)
+          .setParameter("accessToken", accessToken)
+          .getSingleResult();
+    } catch (NoResultException nre) {
+      return null;
     }
+  }
 }
